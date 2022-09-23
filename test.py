@@ -1,9 +1,9 @@
 """
     Testing code for different neural network configurations.
-    Adapted for Python 3.5.2
+    Adapted for Python 3
 
     Usage in shell:
-        python3.5 test.py
+        python3 test.py
 
     Network (network.py and network2.py) parameters:
         2nd param is epochs count
@@ -88,28 +88,26 @@ net.SGD(training_data, 30, 10, 0.1,
 
 
 # ----------------------
-# Theano and CUDA
+# Aesara and CUDA
 # ----------------------
 
 """
-    This deep network uses Theano with GPU acceleration support.
+    This deep network uses Aesara with GPU acceleration support.
     I am using Ubuntu 16.04 with CUDA 7.5.
-    Tutorial:
-    http://deeplearning.net/software/theano/install_ubuntu.html#install-ubuntu
 
-    The following command will update only Theano:
-        sudo pip install --upgrade --no-deps theano
+    The following command will update only Aesara:
+        sudo pip install --upgrade --no-deps aesara
 
-    The following command will update Theano and Numpy/Scipy (warning bellow):
-        sudo pip install --upgrade theano
+    The following command will update Aesara and Numpy/Scipy (warning bellow):
+        sudo pip install --upgrade aesara
 
 """
 
 """
     Below, there is a testing function to check whether your computations have been made on CPU or GPU.
     If the result is 'Used the cpu' and you want to have it in gpu,     do the following:
-    1) install theano:
-        sudo python3.5 -m pip install Theano
+    1) install aesara:
+        sudo python3 -m pip install aesara
     2) download and install the latest cuda:
         https://developer.nvidia.com/cuda-downloads
         I had some issues with that, so I followed this idea (better option is to download the 1,1GB package as .run file):
@@ -117,19 +115,18 @@ net.SGD(training_data, 30, 10, 0.1,
         You may also want to grab the proper NVidia driver, choose it form there:
         System Settings > Software & Updates > Additional Drivers.
     3) should work, run it with:
-        THEANO_FLAGS=mode=FAST_RUN,device=gpu,floatX=float32 python3.5 test.py
-        http://deeplearning.net/software/theano/tutorial/using_gpu.html
+        AESARA_FLAGS=mode=FAST_RUN,device=gpu,floatX=float32 python3 test.py
     4) Optionally, you can add cuDNN support from:
         https://developer.nvidia.com/cudnn
 
 
 """
-def testTheano():
-    from theano import function, config, shared, sandbox
-    import theano.tensor as T
+def testAesara():
+    from aesara import function, config, shared, sandbox
+    import aesara.tensor as T
     import numpy
     import time
-    print("Testing Theano library...")
+    print("Testing Aesara library...")
     vlen = 10 * 30 * 768  # 10 x #cores x # threads per core
     iters = 1000
 
@@ -148,7 +145,7 @@ def testTheano():
     else:
         print('Used the gpu')
 # Perform check:
-#testTheano()
+#testAesara()
 
 
 # ----------------------
